@@ -65,3 +65,17 @@ npm start             # запуск сервера
 - блокування рядка `SELECT … FOR UPDATE NOWAIT` і м'ютекс на сервері для одночасних запитів;
 - звіти на основі представлень `v_room_device_states`, `v_latest_readings`, `v_events_full`, вивантаження у CSV;
 - зрозумілі українські повідомлення про порушення обмежень цілісності (UNIQUE, FOREIGN KEY, CHECK).
+
+## Запуск у Docker
+
+Потрібен лише Docker Desktop (PostgreSQL і Node.js встановлювати не треба).
+
+```
+docker compose up --build
+```
+
+Після запуску відкрийте http://localhost:3001 і увійдіть як `admin` / `admin123` або `viewer` / `viewer123`.
+
+- Під час першого запуску база створюється й заповнюється автоматично; при наступних запусках дані зберігаються.
+- Зупинити: `Ctrl + C` або `docker compose down`.
+- Скинути базу до початкового стану: `docker compose down -v`, потім знову `docker compose up --build`.

@@ -23,6 +23,14 @@ const dbName = process.env.DB_NAME || 'smarthome';
 
   const db = new Client({ ...cfg, database: dbName });
   await db.connect();
+  if (process.argv.includes('--if-empty')) {
+    const has = await db.query("SELECT to_regclass('public.devices') IS NOT NULL AS ok");
+    if (has.rows[0].ok) {
+      console.log('База даних уже існує, ініціалізацію пропущено');
+      await db.end();
+      return;
+    }
+  }
   const dir = path.join(__dirname, '..', '..', 'database');
   const files = fs.readdirSync(dir).filter((f) => /^\d+_.*\.sql$/.test(f)).sort();
   for (const f of files) {
