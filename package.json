@@ -1,0 +1,14 @@
+{
+  "name": "smarthome-monitor",
+  "version": "1.0.0",
+  "description": "SmartHome Monitor — веб-система моніторингу домашніх IoT-пристроїв (курсова робота з дисципліни «Організація баз даних»)",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install --prefix server && npm install --prefix client",
+    "db:init": "npm run db:init --prefix server",
+    "build": "npm run build --prefix client",
+    "start": "npm start --prefix server",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client"
+  }
+}
